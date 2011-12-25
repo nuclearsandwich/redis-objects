@@ -132,6 +132,14 @@ class Redis
           # don't try to refactor into class redis_field_key because fucks up eval context
           "#{klass.redis_prefix}:#{id}:#{name}"
         end
+
+        def redis_keys
+          self.class.redis_objects.keys.map { |key| redis_field_key key }
+        end
+
+        def delete_redis_keys
+          redis.del *redis_field_keys
+        end
       end
     end
   end

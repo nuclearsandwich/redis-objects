@@ -544,6 +544,10 @@ describe Redis::Objects do
     @roster_1.redis.smembers(UNIONSTORE_KEY).sort.should == ['a','b','c','d','e','f','g','l','m']
   end
 
+  it "should not leave dangling keys in redis" do
+    fail
+  end
+
   it "should handle class-level global lists of simple values" do
     Roster.all_player_stats.should.be.empty
     Roster.all_player_stats << 'a'
